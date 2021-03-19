@@ -25,9 +25,10 @@ type Post {
 
 type Query {
   feed: [Post]
-  filterPosts(searchString: String): [Post]
+  filterPosts(searchString: String!): [Post]
   me: User
   post(id: Int): Post
+  users: [User]
 }
 
 type User {

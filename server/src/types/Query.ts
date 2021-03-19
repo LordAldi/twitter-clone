@@ -25,10 +25,17 @@ export const Query = queryType({
       },
     })
 
+    t.list.field('users', {
+      type: 'User',
+      resolve: (parent, args, ctx) => {
+        return ctx.prisma.user.findMany()
+      },
+    })
+
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: stringArg({ nullable: false }),
       },
       resolve: (parent, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
